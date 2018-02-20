@@ -21,7 +21,7 @@ function SimpleDisplay(props) {
   const primary = props.theme.palette.primary;
 
   return (
-    <div className={classes.root} style={{backgroundColor: primary.light, color: '#fff'}}>
+    <div className={classes.root} style={{backgroundColor: primary.dark, color: '#fff'}}>
         <div className='simpleDisplayColumn'>
           <Typography variant='display3' align='center' color='inherit'>$1600</Typography>
           <Typography variant='subheading' align='center' color='inherit'>Monthly Payment</Typography>

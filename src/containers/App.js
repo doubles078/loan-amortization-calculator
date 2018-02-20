@@ -4,6 +4,7 @@ import 'normalize.css';
 import Navbar from '../components/navbar/Navbar.js';
 import Jumbotron from '../components/jumbotron/Jumbotron.js';
 import SimpleDisplay from '../components/simpleplanner/SimpleDisplay.js';
+import SimpleInputs from '../components/simpleplanner/SimpleInputs.js';
 
 const theme = createMuiTheme({
   palette: {
@@ -21,7 +22,7 @@ class App extends React.Component {
         <MuiThemeProvider theme={theme}>
           <Navbar />
           <Jumbotron>
-            <h1>YOOOO</h1>
+            <SimpleInputs />
           </Jumbotron>
           <SimpleDisplay />
         </MuiThemeProvider>

@@ -13,12 +13,12 @@ const styles = {
 
 function Jumbotron(props) {
   const { classes } = props;
-  const primaryDark = props.theme.palette.primary.dark;
+  const primaryDark = props.theme.palette.primary.light;
 
   console.log(props.theme.palette);
 
   return (
-    <div className={classes.root} style={{backgroundColor: primaryDark, color: '#fff'}}>
+    <div className={classes.root} style={{backgroundColor: primaryDark}}>
         {props.children}
     </div>
   );
