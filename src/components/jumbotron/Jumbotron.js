@@ -7,7 +7,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    padding: '100px 0px 100px 0px',
+    padding: '75px 0px 75px 0px',
   }
 };
 
