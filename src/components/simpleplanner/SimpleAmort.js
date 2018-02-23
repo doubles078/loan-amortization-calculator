@@ -75,7 +75,7 @@ class SimpleAmort extends React.Component {
             </TableHead>
             <TableBody>
               {amort.map((year, index) => (
-                  <SimpleAmortRow  key={index} year={year.year} principal={year.principalY} interest={year.interestY}  percent={12} balance={year.balance} />
+                  <SimpleAmortRow  key={index} year={year.year} principal={year.principalY} interest={year.interestY}  percent={year.percent} balance={year.balance} />
                 ))}
             </TableBody>
           </Table>

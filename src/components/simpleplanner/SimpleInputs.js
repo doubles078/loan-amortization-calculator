@@ -26,7 +26,7 @@ const styles = theme => ({
   },
   group: {
     display: "flex",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     flexDirection: "row"
   },
   checkedBase: {

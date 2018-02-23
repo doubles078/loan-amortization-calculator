@@ -8,9 +8,6 @@ import { LinearProgress } from 'material-ui/Progress';
 const styles = theme => ({
   charttd: {
     width: '100%'
-  },
-  secondaryColorBar: {
-    backgroundColor: 'red'
   }
 });
 
@@ -27,8 +24,7 @@ function SimpleAmortRow(props) {
       <TableCell numeric>${cleanedPrincipal}</TableCell>
       <TableCell className={classes.charttd}>
         <LinearProgress
-          className={classes.secondaryColorBar}
-          mode="determinate"
+          variant="determinate"
           value={props.percent}
           />
       </TableCell>
