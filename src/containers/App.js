@@ -23,6 +23,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       spacing: 0,
+      padding: '25px'
     };
   }
 
@@ -43,7 +44,7 @@ class App extends React.Component {
             </Grid>
           </Grid>
           <Grid container spacing={this.state.spacing}>
-            <Grid item xs={6}>
+            <Grid item xs={6} spacing={24} style={{padding: this.state.padding}}>
               <SimpleAmort />
             </Grid>
           </Grid>
