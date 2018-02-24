@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import 'normalize.css';
@@ -40,17 +41,23 @@ class App extends React.Component {
           </Grid>
           <Grid container spacing={this.state.spacing}>
             <Grid item xs={12}>
-              <SimpleDisplay />
+              <SimpleDisplay simplecalculations />
             </Grid>
           </Grid>
           <Grid container spacing={this.state.spacing}>
-            <Grid item xs={6} spacing={24} style={{padding: this.state.padding}}>
-              <SimpleAmort />
+            <Grid item xs={6} style={{padding: this.state.padding}}>
+              <SimpleAmort simplecalculations={this.props.simplecalculations} />
             </Grid>
           </Grid>
         </MuiThemeProvider>
     )};
 }
 
+function mapStateToProps(state){
+  return {
+    simplecalculations: state.simpleCalcReducer,
+  };
+}
 
-export default App;
+
+export default connect(mapStateToProps)(App);

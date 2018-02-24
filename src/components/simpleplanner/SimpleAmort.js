@@ -52,7 +52,8 @@ class SimpleAmort extends React.Component {
   render(){
     const { classes } = this.props;
 
-    const payment = this.calculatePayment(200000, 20, 5);
+
+    const payment = this.props.simplecalculations.principal === undefined ? this.calculatePayment(0, 0, 0) : this.calculatePayment(this.props.simplecalculations.principal, this.props.simplecalculations.term, this.props.simplecalculations.rate);
     const amort = payment.amortization;
     const monthly = payment.monthlyPayment;
     console.log(`Monthly payment is equal to: ${monthly}`);

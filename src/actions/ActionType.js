@@ -1,0 +1,1 @@
+export const SIMPLE_SUBMIT = 'SIMPLE_SUBMIT';

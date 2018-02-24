@@ -1,23 +1,21 @@
 import React from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { simpleCalculator } from '../../actions/index.js';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import MenuItem from 'material-ui/Menu/MenuItem';
-import TextField from 'material-ui/TextField';
 import Radio, { RadioGroup } from 'material-ui/Radio';
 import { FormControl, FormHelperText, FormControlLabel } from 'material-ui/Form';
-import Input, { InputLabel, InputAdornment } from 'material-ui/Input';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import { green, blue, red } from 'material-ui/colors';
+import SimpleInputsText from './SimpleInputsText.js';
 
 
 
 const styles = theme => ({
   container: {
     display: 'block'
-  },
-  menu: {
-    width: 200,
   },
   formControl: {
     marginLeft: theme.spacing.unit,
@@ -48,80 +46,65 @@ class SimpleInputs extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      selectedValue: 'base',
+      principal: '',
+      rate: '',
+      term: '',
+      salary: '',
+      expenses: '',
+      plan: 'base',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange (e) {
-    console.log(e.target.value)
-    this.setState({selectedValue: e.target.value})
+  handleChange(e) {
+    const stateElement = e.target.name;
+    this.setState({[stateElement]: e.target.value})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
+    this.props.dispatch(simpleCalculator(this.state));
   }
 
   render() {
     const { classes } = this.props;
+    const inputItems = [
+      {Key: 'principal', Label: 'Principal'},
+      {Key: 'rate', Label: 'Interest Rate'},
+      {Key: 'term', Label: 'Loan Term'},
+      {Key: 'salary', Label: 'Yearly Salary'},
+      {Key: 'expenses', Label: 'Monthly Expenses'},
+    ];
+    const inputItemOutputs = inputItems.map((item) => {
+        return(
+          <SimpleInputsText
+            key={item.Key}
+            label={item.Label}
+            id={item.Key}
+            name={item.Key}
+            handleChange={this.handleChange}
+          />
+      )
+    });
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} onSubmit={this.handleSubmit} noValidate autoComplete="off">
         <Grid container>
-          <Grid item xs={4}>
-            <FormControl fullWidth className={classes.formControl}>
-              <InputLabel htmlFor="amount">Loan Total</InputLabel>
-              <Input
-                id="amount"
-                endAdornment={<InputAdornment position="end">$</InputAdornment>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth className={classes.formControl}>
-              <InputLabel htmlFor="interest">Interest Rate</InputLabel>
-              <Input
-                id="interest"
-                endAdornment={<InputAdornment position="end">%</InputAdornment>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth className={classes.formControl}>
-              <InputLabel htmlFor="term">Loan Term</InputLabel>
-              <Input
-                id="term"
-                endAdornment={<InputAdornment position="end">yrs</InputAdornment>}
-              />
-            </FormControl>
-          </Grid>
-        </Grid>
-        <Grid container style={{ paddingTop: "20px"}}>
-          <Grid item xs={4}>
-            <FormControl fullWidth className={classes.formControl}>
-              <InputLabel htmlFor="salary">Yearly Salary</InputLabel>
-              <Input
-                id="salary"
-                endAdornment={<InputAdornment position="end">$</InputAdornment>}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth className={classes.formControl}>
-              <InputLabel htmlFor="expenses">Monthly Expenses</InputLabel>
-              <Input
-                id="expenses"
-                endAdornment={<InputAdornment position="end">$</InputAdornment>}
-              />
-            </FormControl>
-          </Grid>
+          {inputItemOutputs}
         </Grid>
         <Grid container alignItems="center" style={{ paddingTop: "20px" }}>
           <Grid item xs={12} >
             <FormControl component="fieldset" className={classes.formControl} style={{ display: 'flex', justifyContent: 'center' }}>
               <RadioGroup
-                aria-label="gender"
-                name="gender2"
+                aria-label="planstrength"
+                name="plan"
                 className={classes.group}
-                value={this.state.selectedValue}
+                value={this.state.plan}
                 onChange={this.handleChange}
+                id="plan"
               >
                 <FormControlLabel value="base" control={<Radio classes={{checked: classes.checkedBase}} />} label="Base" />
                 <FormControlLabel value="moderate" control={<Radio classes={{checked: classes.checkedModerate}} />} label="Moderate" />
@@ -130,7 +113,7 @@ class SimpleInputs extends React.Component {
             </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Button variant="raised" size="large" color="secondary" className={classes.button}>
+            <Button variant="raised" size="large" type="submit" color="secondary" className={classes.button}>
               Calculate
             </Button>
           </Grid>
@@ -144,4 +127,8 @@ SimpleInputs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleInputs);
+function mapDispatchToProps(dispatch){
+  return { actions: bindActionCreators(simpleCalculator, dispatch)}
+}
+
+export default connect(mapDispatchToProps)(withStyles(styles)(SimpleInputs));
