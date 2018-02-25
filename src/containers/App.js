@@ -41,7 +41,7 @@ class App extends React.Component {
           </Grid>
           <Grid container spacing={this.state.spacing}>
             <Grid item xs={12}>
-              <SimpleDisplay simplecalculations />
+              <SimpleDisplay simplecalculations={this.props.simplecalculations} />
             </Grid>
           </Grid>
           <Grid container spacing={this.state.spacing}>
