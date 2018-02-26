@@ -7,6 +7,7 @@ import Navbar from '../components/navbar/Navbar.js';
 import Jumbotron from '../components/jumbotron/Jumbotron.js';
 import SimpleDisplay from '../components/simpleplanner/SimpleDisplay.js';
 import SimpleInputs from '../components/simpleplanner/SimpleInputs.js';
+import SimplePlan from '../components/simpleplanner/SimplePlan.js';
 import SimpleAmort from '../components/simpleplanner/SimpleAmort.js';
 
 const theme = createMuiTheme({
@@ -32,20 +33,17 @@ class App extends React.Component {
     return (
         <MuiThemeProvider theme={theme}>
           <Navbar />
-          <Grid container spacing={this.state.spacing}>
-            <Grid item xs={12}>
-              <Jumbotron>
-                <SimpleInputs />
-              </Jumbotron>
-            </Grid>
-          </Grid>
+          <Jumbotron>
+            <SimpleInputs />
+            <SimplePlan simplecalculations={this.props.simplecalculations} />
+          </Jumbotron>
           <Grid container spacing={this.state.spacing}>
             <Grid item xs={12}>
               <SimpleDisplay simplecalculations={this.props.simplecalculations} />
             </Grid>
           </Grid>
-          <Grid container spacing={this.state.spacing}>
-            <Grid item xs={6} style={{padding: this.state.padding}}>
+          <Grid container spacing={this.state.spacing} direction="column" align="center">
+            <Grid item xs={10} style={{padding: this.state.padding}}>
               <SimpleAmort simplecalculations={this.props.simplecalculations} />
             </Grid>
           </Grid>

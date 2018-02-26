@@ -8,7 +8,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     justifyContent: 'space-evenly',
-    padding: '50px 0px 50px 0px'
+    padding: '25px 0px 25px 0px'
   },
   simpleDisplayColumn: {
       textAlign: 'center',
@@ -19,20 +19,27 @@ const styles = {
 function SimpleDisplay(props) {
   const { classes } = props;
   const primary = props.theme.palette.primary;
+  const propsSimple = props.simplecalculations;
+  const monthlyRate = propsSimple.rate / 100 / 12;
+  const monthlyPayment = Math.round((propsSimple.principal * (monthlyRate) / (1 - (Math.pow(1/(1 + monthlyRate), propsSimple.term * 12)))) * 100) / 100;
+  const todaysDate = new Date();
+  const todaysYear = todaysDate.getFullYear();
+  const paymentYear = todaysYear + parseInt(propsSimple.term);
+  const totalPayments = propsSimple.term * 12;
 
   return (
     <div className={classes.root} style={{backgroundColor: primary.dark, color: '#fff'}}>
         <div className='simpleDisplayColumn'>
-          <Typography variant='display3' align='center' color='inherit'>$1600</Typography>
+          <Typography variant='display3' align='center' color='inherit'>${monthlyPayment}</Typography>
           <Typography variant='subheading' align='center' color='inherit'>Monthly Payment</Typography>
         </div>
         <div className='simpleDisplayColumn'>
-          <Typography variant='display3' align='center' color='inherit'>220</Typography>
-          <Typography variant='subheading' align='center' color='inherit'>Total Payments</Typography>
+          <Typography variant='display3' align='center' color='inherit'>{paymentYear}</Typography>
+          <Typography variant='subheading' align='center' color='inherit'>Paid Off By</Typography>
         </div>
         <div className='simpleDisplayColumn'>
-          <Typography variant='display3' align='center' color='inherit'>2026</Typography>
-          <Typography variant='subheading' align='center' color='inherit'>Target Payment Year</Typography>
+          <Typography variant='display3' align='center' color='inherit'>{totalPayments}</Typography>
+          <Typography variant='subheading' align='center' color='inherit'>Total Payments</Typography>
         </div>
     </div>
   );

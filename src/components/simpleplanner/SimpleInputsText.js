@@ -9,8 +9,6 @@ import Grid from 'material-ui/Grid';
 
 const styles = theme => ({
   formControl: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
     flex: 1
   }
 });
@@ -18,7 +16,7 @@ const styles = theme => ({
 function SimpleInputsText(props){
   const { classes } = props;
   return (
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <FormControl fullWidth className={classes.formControl}>
             <InputLabel htmlFor="amount">{props.label}</InputLabel>
             <Input
