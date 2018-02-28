@@ -8,8 +8,8 @@ import { FormControl, FormHelperText, FormControlLabel } from 'material-ui/Form'
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import SimpleInputsText from './SimpleInputsText.js';
-
-
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
   container: {
@@ -27,8 +27,25 @@ const styles = theme => ({
   },
   button: {
     display: 'block',
-    margin: '25px auto 0px auto'
-  }
+    margin: '0px auto 0px auto'
+  },
+  card: {
+    minWidth: 275,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    marginBottom: 16,
+    fontSize: 14,
+    color: theme.palette.text.secondary,
+  },
+  pos: {
+    marginBottom: 12,
+    color: theme.palette.text.secondary,
+  },
 });
 
 class SimpleInputs extends React.Component {
@@ -78,16 +95,20 @@ class SimpleInputs extends React.Component {
 
     return (
       <form className={classes.container} onSubmit={this.handleSubmit} noValidate autoComplete="off">
-        <Grid container>
-          <Grid item xs={10}>
+        <CardContent>
             <Grid container>
-              {inputItemOutputs}
+              <Grid item xs={12}>
+                <Grid container>
+                  {inputItemOutputs}
+                </Grid>
+              </Grid>
             </Grid>
-            <Button variant="raised" size="large" type="submit" color="secondary" className={classes.button}>
-              Calculate
-            </Button>
-          </Grid>
-        </Grid>
+        </CardContent>
+        <CardActions>
+          <Button variant="raised" size="large" type="submit" color="secondary" className={classes.button}>
+            Calculate
+          </Button>
+        </CardActions>
       </form>
     );
   }

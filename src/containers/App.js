@@ -4,6 +4,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import 'normalize.css';
 import Navbar from '../components/navbar/Navbar.js';
+import ClippedDrawer from '../components/navbar/Drawer.js';
 import Jumbotron from '../components/jumbotron/Jumbotron.js';
 import SimpleDisplay from '../components/simpleplanner/SimpleDisplay.js';
 import SimpleInputs from '../components/simpleplanner/SimpleInputs.js';
@@ -31,11 +32,12 @@ class App extends React.Component {
 
   render(){
     return (
+      <main>
+
         <MuiThemeProvider theme={theme}>
           <Navbar />
           <Jumbotron>
             <SimpleInputs />
-            <SimplePlan simplecalculations={this.props.simplecalculations} />
           </Jumbotron>
           <Grid container spacing={this.state.spacing}>
             <Grid item xs={12}>
@@ -48,6 +50,7 @@ class App extends React.Component {
             </Grid>
           </Grid>
         </MuiThemeProvider>
+        </main>
     )};
 }
 

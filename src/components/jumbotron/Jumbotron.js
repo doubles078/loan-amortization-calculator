@@ -7,7 +7,7 @@ const styles = {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
-    padding: '75px 0px 75px 0px',
+    padding: '15px 0px 15px 0px',
   }
 };
 
@@ -18,7 +18,7 @@ function Jumbotron(props) {
   console.log(props.theme.palette);
 
   return (
-    <div className={classes.root} style={{backgroundColor: primaryDark}}>
+    <div className={classes.root}>
         {props.children}
     </div>
   );

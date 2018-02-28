@@ -2,8 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from 'material-ui/Typography';
 import { withStyles, withTheme } from 'material-ui/styles';
+import Card, { CardContent, CardMedia } from 'material-ui/Card';
+import IconButton from 'material-ui/IconButton';
+import Icon from 'material-ui/Icon';
 
-const styles = {
+const styles = theme => ({
   root: {
     width: '100%',
     display: 'flex',
@@ -13,8 +16,41 @@ const styles = {
   simpleDisplayColumn: {
       textAlign: 'center',
       color: '#fff'
+  },
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  card: {
+    display: 'flex',
+  },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: '160px'
+  },
+  content: {
+    flex: '1 0 auto',
+  },
+  icon: {
+    alignItems: 'center'
+  },
+  iconContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0px 50px 0px 50px',
+    color: '#fff',
+    backgroundColor: '#673AB7'
+  },
+  cover: {
+    width: 151,
+    height: 151,
   }
-};
+});
 
 function SimpleDisplay(props) {
   const { classes } = props;
@@ -28,19 +64,67 @@ function SimpleDisplay(props) {
   const totalPayments = propsSimple.term * 12;
 
   return (
-    <div className={classes.root} style={{backgroundColor: primary.dark, color: '#fff'}}>
-        <div className='simpleDisplayColumn'>
-          <Typography variant='display3' align='center' color='inherit'>${monthlyPayment}</Typography>
-          <Typography variant='subheading' align='center' color='inherit'>Monthly Payment</Typography>
+    <div className={classes.cardContainer}>
+      <Card className={classes.card}>
+        <div className={classes.iconContainer}>
+          <p>
+          <Icon>star</Icon>
+          </p>
         </div>
-        <div className='simpleDisplayColumn'>
-          <Typography variant='display3' align='center' color='inherit'>{paymentYear}</Typography>
-          <Typography variant='subheading' align='center' color='inherit'>Paid Off By</Typography>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography variant="headline">${monthlyPayment}</Typography>
+            <Typography variant="subheading" color="textSecondary">
+              Monthly Payment
+            </Typography>
+          </CardContent>
         </div>
-        <div className='simpleDisplayColumn'>
-          <Typography variant='display3' align='center' color='inherit'>{totalPayments}</Typography>
-          <Typography variant='subheading' align='center' color='inherit'>Total Payments</Typography>
+      </Card>
+      <Card className={classes.card}>
+        <div className={classes.iconContainer}>
+          <p>
+          <Icon>star</Icon>
+          </p>
         </div>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography variant="headline">{paymentYear}</Typography>
+            <Typography variant="subheading" color="textSecondary">
+              Paid off by
+            </Typography>
+          </CardContent>
+        </div>
+      </Card>
+      <Card className={classes.card}>
+        <div className={classes.iconContainer}>
+          <p>
+          <Icon>star</Icon>
+          </p>
+        </div>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography variant="headline">{totalPayments}</Typography>
+            <Typography variant="subheading" color="textSecondary">
+              Total Payments
+            </Typography>
+          </CardContent>
+        </div>
+      </Card>
+      <Card className={classes.card}>
+        <div className={classes.iconContainer}>
+          <p>
+          <Icon>star</Icon>
+          </p>
+        </div>
+        <div className={classes.details}>
+          <CardContent className={classes.content}>
+            <Typography variant="headline">{monthlyPayment}</Typography>
+            <Typography variant="subheading" color="textSecondary">
+              Something Else
+            </Typography>
+          </CardContent>
+        </div>
+      </Card>
     </div>
   );
 }
