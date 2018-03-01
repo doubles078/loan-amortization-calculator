@@ -78,8 +78,7 @@ class SimpleInputs extends React.Component {
     const inputItems = [
       {Key: 'principal', Label: 'Principal'},
       {Key: 'rate', Label: 'Interest Rate'},
-      {Key: 'term', Label: 'Loan Term'},
-      {Key: 'monthlypayment', Label: 'Monthly Payment'},
+      {Key: 'term', Label: 'Loan Term'}
     ];
     const inputItemOutputs = inputItems.map((item) => {
         return(
