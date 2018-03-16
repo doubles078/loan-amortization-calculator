@@ -1,8 +1,3 @@
-Temporary Read Me until I finish this project...
+This is a small project I worked on to practice Redux and play with the MaterialUI design framework.  It is an amortization calculator for simple loans.  There is no working validation in this form... so look out for odd values.
 
-
-
-
-... Hi mom! I'm on the internet.
-
-Test
+![Example Image](https://imgur.com/a/twExy)
