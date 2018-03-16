@@ -30,9 +30,8 @@ function Navbar(props) {
       >
         <Toolbar>
           <Typography type="title" color="inherit" className={classes.flex}>
-            STUDENT LOAN APP
+            AMORTIZATION CALCULATOR
           </Typography>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </div>

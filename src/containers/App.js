@@ -39,13 +39,13 @@ class App extends React.Component {
           <Jumbotron>
             <SimpleInputs />
           </Jumbotron>
-          <Grid container spacing={this.state.spacing}>
+          <Grid container spacing={this.state.spacing} direction="column" align="center">
             <Grid item xs={12}>
               <SimpleDisplay simplecalculations={this.props.simplecalculations} />
             </Grid>
           </Grid>
           <Grid container spacing={this.state.spacing} direction="column" align="center">
-            <Grid item xs={10} style={{padding: this.state.padding}}>
+            <Grid item xs={12} style={{padding: this.state.padding}}>
               <SimpleAmort simplecalculations={this.props.simplecalculations} />
             </Grid>
           </Grid>

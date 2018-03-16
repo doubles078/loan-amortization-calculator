@@ -2,7 +2,10 @@
     ./webpack.config.js
 */
 const path = require('path');
-
+// Import the plugin:
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const dashboard = new Dashboard();
 // HTML Webpack to render all html
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
@@ -35,7 +38,10 @@ module.exports = {
             }
       ]
   },
-  plugins: [HtmlWebpackPluginConfig],
+  plugins: [
+    HtmlWebpackPluginConfig,
+    new DashboardPlugin({ port: 4000, handler: dashboard.setData })
+  ],
   devServer: {
     inline:true,
     port: 4000

@@ -15,7 +15,7 @@ const styles = theme => ({
 function SimpleInputsText(props){
   const { classes } = props;
   return (
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <FormControl fullWidth className={classes.formControl}>
             <InputLabel htmlFor="amount">{props.label}</InputLabel>
             <Input

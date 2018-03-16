@@ -24,6 +24,7 @@ const styles = theme => ({
   },
   card: {
     display: 'flex',
+    margin: '0px 20px 0px 20px'
   },
   details: {
     display: 'flex',
@@ -54,77 +55,46 @@ const styles = theme => ({
 
 function SimpleDisplay(props) {
   const { classes } = props;
+
   const primary = props.theme.palette.primary;
   const propsSimple = props.simplecalculations;
   const monthlyRate = propsSimple.rate / 100 / 12;
-  const monthlyPayment = Math.round((propsSimple.principal * (monthlyRate) / (1 - (Math.pow(1/(1 + monthlyRate), propsSimple.term * 12)))) * 100) / 100;
+  let monthlyPayment = Math.round((propsSimple.principal * (monthlyRate) / (1 - (Math.pow(1/(1 + monthlyRate), propsSimple.term * 12)))) * 100) / 100;
   const todaysDate = new Date();
   const todaysYear = todaysDate.getFullYear();
-  const paymentYear = todaysYear + parseInt(propsSimple.term);
-  const totalPayments = propsSimple.term * 12;
+  let paymentYear = todaysYear + parseInt(propsSimple.term);
+  let totalPayments = propsSimple.term * 12;
+
+  if(!props.simplecalculations.principal){
+    monthlyPayment = 0;
+    paymentYear = 0;
+    totalPayments = 0;
+  }
+  const data = [[monthlyPayment, 'Monthly Payment'], [paymentYear,'Paid Off By'], [totalPayments,'Total Payments']];
 
   return (
     <div className={classes.cardContainer}>
-      <Card className={classes.card}>
-        <div className={classes.iconContainer}>
-          <p>
-          <Icon>star</Icon>
-          </p>
-        </div>
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography variant="headline">${monthlyPayment}</Typography>
-            <Typography variant="subheading" color="textSecondary">
-              Monthly Payment
-            </Typography>
-          </CardContent>
-        </div>
-      </Card>
-      <Card className={classes.card}>
-        <div className={classes.iconContainer}>
-          <p>
-          <Icon>star</Icon>
-          </p>
-        </div>
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography variant="headline">{paymentYear}</Typography>
-            <Typography variant="subheading" color="textSecondary">
-              Paid off by
-            </Typography>
-          </CardContent>
-        </div>
-      </Card>
-      <Card className={classes.card}>
-        <div className={classes.iconContainer}>
-          <p>
-          <Icon>star</Icon>
-          </p>
-        </div>
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography variant="headline">{totalPayments}</Typography>
-            <Typography variant="subheading" color="textSecondary">
-              Total Payments
-            </Typography>
-          </CardContent>
-        </div>
-      </Card>
-      <Card className={classes.card}>
-        <div className={classes.iconContainer}>
-          <p>
-          <Icon>star</Icon>
-          </p>
-        </div>
-        <div className={classes.details}>
-          <CardContent className={classes.content}>
-            <Typography variant="headline">{monthlyPayment}</Typography>
-            <Typography variant="subheading" color="textSecondary">
-              Something Else
-            </Typography>
-          </CardContent>
-        </div>
-      </Card>
+      {
+        data.map((card, i) => {
+          console.log(i)
+          return(
+            <Card className={classes.card} key={i}>
+              <div className={classes.iconContainer}>
+                <p>
+                <Icon>star</Icon>
+                </p>
+              </div>
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography variant="headline">{card[0]}</Typography>
+                  <Typography variant="subheading" color="textSecondary">
+                    {card[1]}
+                  </Typography>
+                </CardContent>
+              </div>
+            </Card>
+          )})
+      }
     </div>
   );
 }
