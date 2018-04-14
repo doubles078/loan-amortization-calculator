@@ -32,7 +32,7 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "start": "webpack-dashboard -- webpack-dev-server",
+    "start": "webpack-dev-server",
     "build": "webpack"
   }
 }
